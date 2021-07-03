@@ -1,0 +1,61 @@
+{
+    "id": "5b47b2d7337d4a36187c61c9",
+    "description": "Mid-Rise Steel Moment Frame",
+    "authors": [
+        "Elnashai and Jeong"
+    ],
+    "paperReference": null,
+    "resultUnit": null,
+    "resultType": "Limit State",
+    "hazardType": "earthquake",
+    "inventoryType": "building",
+    "creator": "incore",
+    "spaces": [
+        "coe"
+    ],
+    "demandTypes": [
+        "0.2 sec Sa"
+    ],
+    "demandUnits": [
+        "g"
+    ],
+    "fragilityCurves": [
+        {
+            "className": "PeriodStandardFragilityCurve",
+            "description": "Moderate",
+            "alpha": -0.576,
+            "beta": 0.836,
+            "alphaType": "lambda",
+            "curveType": "LogNormal",
+            "periodParam2": 0,
+            "periodParam1": 0,
+            "periodParam0": 1.08,
+            "periodEqnType": 1
+        },
+        {
+            "className": "PeriodStandardFragilityCurve",
+            "description": "Extensive",
+            "alpha": 0.23,
+            "beta": 0.911,
+            "alphaType": "lambda",
+            "curveType": "LogNormal",
+            "periodParam2": 0,
+            "periodParam1": 0,
+            "periodParam0": 1.08,
+            "periodEqnType": 1
+        },
+        {
+            "className": "PeriodStandardFragilityCurve",
+            "description": "Complete",
+            "alpha": 1.197,
+            "beta": 1.05,
+            "alphaType": "lambda",
+            "curveType": "LogNormal",
+            "periodParam2": 0,
+            "periodParam1": 0,
+            "periodParam0": 1.08,
+            "periodEqnType": 1
+        }
+    ],
+    "fragilityCurveParameters": null
+}

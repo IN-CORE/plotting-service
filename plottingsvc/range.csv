@@ -1,0 +1,23 @@
+hazard,demand_type,start,end
+earthquake,pga,0.1,2
+earthquake,pgv,0.1,20
+earthquake,pgd,0.1,20
+earthquake,0.1 Sec Sa,0.1,5
+earthquake,0.2 Sec Sa,0.1,5
+earthquake,0.3 Sec Sa,0.1,5
+earthquake,sd,0.1,20
+tsunami,Hmax,0.1,50
+tsunami,Vmax,0.1,50
+flood,inundationDepth,0.1,50
+flood,waterSurfaceElevation,0.1,20
+tornado,wind,0.1,250
+hurricaneWindfield,3s gust,0.1,200
+hurricaneWindfield,60s,0.1,160
+hurricane,waveHeight,0.1,50
+hurricane,surgeLevel,0.1,50
+hurricane,inundationDuration,0.1,50
+hurricane,inundationDepth,0.1,50
+hurricane,wavePeriod,0.1,25
+hurricane,waveDirection,0.1,10
+hurricane,waterVelocity,0.1,5
+hurricane,windVelocity,0.1,250
