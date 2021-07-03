@@ -1,9 +1,0 @@
-{
-    "python.pythonPath": "/home/jonglee1/miniconda3/envs/chartsvc/bin/python",
-    "python.testing.pytestArgs": [
-        "."
-    ],
-    "python.testing.unittestEnabled": false,
-    "python.testing.nosetestsEnabled": false,
-    "python.testing.pytestEnabled": true
-}
