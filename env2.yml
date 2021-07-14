@@ -1,0 +1,10 @@
+name: plotting-service
+channels:
+  - in-core
+  - conda-forge
+  - defaults
+dependencies:
+  - connexion>=2.8.0
+  - pyincore>=0.9.4
+  - pyincore-viz>=1.2.0
+

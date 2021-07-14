@@ -1,0 +1,65 @@
+---
+openapi: 3.0.0
+info:
+  title: IN-CORE Plot Service API
+  description: IN-CORE Plot Service API to generate sample points
+  contact:
+    name: IN-CORE Dev Team
+    email: incore-dev@lists.illinois.edu
+  license:
+    name: MPL 2.0
+    url: https://www.mozilla.org/en-US/MPL/2.0/
+  version: 1.0.0
+servers:
+- url: /api
+paths:
+  /samples:
+    post:
+      description: |
+        By passing in the appropriate options, you can acquire samples points of given fragility-set ID
+      requestBody:
+        description: fragility set
+        required: true
+        content: 
+          text/plain:
+            schema: 
+              type: string      
+      parameters:
+      - name: sample_size
+        in: query
+        description: number of sample
+        required: false
+        style: form
+        explode: true
+        schema:
+          maximum: 100
+          minimum: 1
+          type: integer
+          format: int32
+          default: 50
+      - name: refresh
+        in: query
+        description: regenerate the samples or not
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: boolean
+          default: false
+      responses:
+        "200":
+          description: list of sample points values
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string
+#            text/csv:
+#              schema:
+#                type: string
+        "400":
+          description: bad input parameter
+        "404":
+          description: couldn't find fragliity set ID
+components: {}
