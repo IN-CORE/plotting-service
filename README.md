@@ -1,17 +1,14 @@
 # Plotting Service 
-
-## database related
-init_db.py: initialize the database
-db.py: 
-
-app.py: plotting service flask app
-test_sample.py: testing service with two json files: old format and new format
+IN-CORE service to generate sample points for plotting fragiliy curves
 
 ## Initialize the database first
+cd util-script
 python init_db.py
 
 ## RUN
-python app.py
+cd plotting-service
+python app.py OR flask run
 
 ## Testing the flask app
+cd test
 python test_sample.py
