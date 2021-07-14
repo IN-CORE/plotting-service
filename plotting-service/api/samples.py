@@ -1,6 +1,8 @@
 import logging
 import utils
 
+import cachedb
+
 from pyincore.models.fragilitycurveset import FragilityCurveSet
 from pyincore.models.fragilitycurverefactored import FragilityCurveRefactored
 
@@ -24,7 +26,7 @@ def get_xy_set(fragility_set, sample_size, refresh):
     #check the database first
     xy_set = None
     if refresh is False:
-        xy_set = utils.check_cache(fragility_set, sample_size)
+        xy_set = cachedb.check_cache(fragility_set, sample_size)
 
     #if there is a match, return the xy_set
     if xy_set is not None:
@@ -37,7 +39,7 @@ def get_xy_set(fragility_set, sample_size, refresh):
         xy_set = utils.get_xy_old_fragility_set(fragility_set, sample_size=sample_size)    
 
     # store the xy_set to cache DB
-    utils.store_cache(fragility_set, sample_size, xy_set)
+    cachedb.store_cache(fragility_set, sample_size, xy_set)
 
     return xy_set
 

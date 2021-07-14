@@ -1,4 +1,4 @@
-import db
+import cachedb
 import connexion
 from connexion.resolver import RestyResolver
 
@@ -24,14 +24,14 @@ def create_app(test_config=None):
     else:
         flask_app.config.from_mapping(test_config)
     
-    flask_app.teardown_appcontext(db.close_db)
+    flask_app.teardown_appcontext(cachedb.close_db)
 
     return flask_app
 
+app = create_app()
 
 if __name__ == "__main__":
     debug = True
-    app = create_app()
     app.run(port=5000, debug=debug)
 # testing fragility (old) 5b47b2d7337d4a36187c61c9
 # testing new fragility 5f6ccf67de7b566bb71b202d
