@@ -1,6 +1,7 @@
 import cachedb
 import connexion
 from connexion.resolver import RestyResolver
+from flask_cors import CORS
 
 def create_app(test_config=None):
     # if debug:
@@ -13,7 +14,8 @@ def create_app(test_config=None):
 
     options = {"swagger_ui": False}
     app = connexion.FlaskApp(__name__.split('.')[0])
-    app.add_api('plotting-service-api.yaml', 
+    CORS(app.app)
+    app.add_api('plotting-service-api.yaml',
             resolver=RestyResolver("api"), 
             resolver_error=501,
             options=options)
