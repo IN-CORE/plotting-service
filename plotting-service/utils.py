@@ -65,16 +65,17 @@ def get_xy_old_fragility_set(fragility_set, sample_size: int = 200):
 def get_refactored_xy_fragility_set(fragility_set, custom_fragility_curve_parameters={}, sample_size: int = 200):
     demand_type_names = []
     for parameter in fragility_set.fragility_curve_parameters:
-        # for  hazard
-        if parameter.get("name") in fragility_set.demand_types or parameter.get("key") in \
-                fragility_set.demand_types:
+        # for hazard
+        if parameter.get("name") in fragility_set.demand_types:
             demand_type_names.append(parameter["name"])
+        elif parameter.get("fullName") in fragility_set.demand_types:
+            demand_type_names.append(parameter["fullName"])
         # check the rest of the parameters see if default or custom value has passed in
         else:
             if parameter.get("expression") is None and parameter.get("name") not in \
                     custom_fragility_curve_parameters:
                 raise ValueError("The required parameter: " + parameter.get("name")
-                                 + " does not have a default or  custom value. Please check "
+                                 + " does not have a default or custom value. Please check "
                                  "your fragility curve setting. Alternatively, you can include it in the "
                                  "custom_fragility_curve_parameters variable and passed it in this method. ")
 
@@ -106,7 +107,7 @@ def get_refactored_xy_fragility_set(fragility_set, custom_fragility_curve_parame
 
 def get_start_end(hazard, demand_type):
     key = hazard.lower() + "-" + demand_type.lower()
-    range = config.RANGE[key]
+    range = config.RANGE.get(key, "default")
     
     return (range['start'], range['end'])
 

@@ -17,6 +17,7 @@ def format_xy_set(xy_set):
         for i in range(len(xy['x'])):
             xy_list.append([xy['x'][i], xy['y'][i]])
         new_format[xy_key] = xy_list
+        new_format[xy_key] = xy_list
 
     return new_format
 

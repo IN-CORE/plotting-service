@@ -1,5 +1,10 @@
 DATABASE = 'cache.sqlite3'
-RANGE = {   
+RANGE = {
+    'default': { 'demand_type': 'unknown',
+                                 'end': 10,
+                                 'hazard': 'unknown',
+                                 'start': 0.1
+    },
     'earthquake-0.1 sec sa': {   'demand_type': '0.1 Sec Sa',
                                  'end': 5,
                                  'hazard': 'earthquake',
