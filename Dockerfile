@@ -6,6 +6,9 @@ COPY plotting-service /src/plotting-service
 
 WORKDIR /src/plotting-service
 
+RUN mkdir /src/plotting-service/data \
+ && mkdir /src/plotting-service/copydb
+
 #RUN conda install -n base --file env2.yml && conda clean -a
 RUN conda env create -f env.yml
 

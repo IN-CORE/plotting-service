@@ -1,4 +1,4 @@
-DATABASE = 'cache.sqlite3'
+DATABASE = 'data/cache.sqlite3'
 RANGE = {
     'default': { 'demand_type': 'unknown',
                                  'end': 10,
