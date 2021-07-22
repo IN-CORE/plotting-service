@@ -62,4 +62,16 @@ paths:
           description: bad input parameter
         "404":
           description: couldn't find fragliity set ID
+  /health:
+    get:
+      summary: Get status check
+      tags:
+        - Plotting
+      responses:
+        200:
+          description: The service is alive and responding.
+        400:
+          description: Bad request
+        500:
+          description: Internal server error
 components: {}
