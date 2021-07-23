@@ -62,7 +62,7 @@ paths:
           description: bad input parameter
         "404":
           description: couldn't find fragliity set ID
-  /health:
+  /status:
     get:
       summary: Get status check
       tags:

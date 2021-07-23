@@ -2,7 +2,7 @@ from flask import jsonify, make_response
 
 def search():
     message = {
-        'health': 'okay',
+        'status': 'okay',
     }
     resp = jsonify(message)
     resp.status_code = 200
