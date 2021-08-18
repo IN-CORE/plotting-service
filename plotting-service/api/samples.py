@@ -7,9 +7,6 @@ from pyincore.models.fragilitycurveset import FragilityCurveSet
 from pyincore.models.fragilitycurverefactored import FragilityCurveRefactored
 
 import json
-import traceback
-import sys
-
 
 def format_xy_set(xy_set):
     # hichart format
@@ -47,16 +44,14 @@ def get_xy_set(fragility_set, sample_size, refresh):
     return xy_set
 
 
+
 # POST method for samples/{fraglity_set_id}
 def post(body, sample_size, refresh):
-    try:
-        # create fragility_set object from the body of request
-        fragility_set_json = json.loads(body)
-        fragility_set = FragilityCurveSet(fragility_set_json)
+    # create fragility_set object from the body of request
+    fragility_set_json = json.loads(body)
+    fragility_set = FragilityCurveSet(fragility_set_json)
 
-        xy_set = get_xy_set(fragility_set, sample_size=sample_size, refresh=refresh)
+    xy_set = get_xy_set(fragility_set, sample_size=sample_size, refresh=refresh)
 
-        return format_xy_set(xy_set), 200
+    return format_xy_set(xy_set)
 
-    except Exception:
-        return traceback.format_exc(), 500
