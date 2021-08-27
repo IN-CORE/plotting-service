@@ -107,8 +107,8 @@ def get_refactored_xy_fragility_set(fragility_set, custom_fragility_curve_parame
 
 def get_start_end(hazard, demand_type):
     key = hazard.lower() + "-" + demand_type.lower()
-    range = config.RANGE.get(key, "default")
-    
+    range = config.RANGE.get(key, config.RANGE["default"])
+
     return (range['start'], range['end'])
 
 
