@@ -122,11 +122,14 @@ def get_refactored_xyz_fragility_set(fragility_set, custom_fragility_curve_param
     for curve in fragility_set.fragility_curves:
         if limit_state == curve.return_type["description"]:
             matched = True
-            x, y, z = PlotUtil.get_refactored_x_y_z(curve,
+            X, Y, Z = PlotUtil.get_refactored_x_y_z(curve,
                                                     demand_type_names[:2],
                                                     fragility_set.fragility_curve_parameters,
                                                     custom_fragility_curve_parameters, start=start, end=end,
                                                     sample_size=sample_size)
+            x = np.vstack([X.ravel()])
+            y = np.vstack([Y.ravel()])
+            z = np.vstack([Z.ravel()])
             key = curve.return_type['description']
             xyz_set[key] = {'x': _ndarray_to_list(x), 'y': _ndarray_to_list(y), 'z': _ndarray_to_list(z)}
 
