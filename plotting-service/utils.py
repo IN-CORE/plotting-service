@@ -82,28 +82,59 @@ def get_refactored_xy_fragility_set(fragility_set, custom_fragility_curve_parame
     xy_set = {}
 
     start, end = get_start_end(fragility_set.hazard_type, demand_type_names[0])
-    print(start, end, sample_size)
+    # print(start, end, sample_size)
 
     for curve in fragility_set.fragility_curves:
 
         x, y = PlotUtil.get_refactored_x_y(curve, demand_type_names[0],
                                            fragility_set.fragility_curve_parameters,
-                                           custom_fragility_curve_parameters,start=start, end=end, sample_size=sample_size)
+                                           custom_fragility_curve_parameters, start=start, end=end,
+                                           sample_size=sample_size)
         key = curve.return_type['description']
-
-        if isinstance(x, np.ndarray):
-            new_x = x.tolist()
-        else:
-            new_x = x
-        
-        if isinstance(y, np.ndarray):
-            new_y = y.tolist()
-        else:
-            new_y = y
-
-        xy_set[key] = {'x': new_x, 'y': new_y}
+        xy_set[key] = {'x': _ndarray_to_list(x), 'y': _ndarray_to_list(y)}
 
     return xy_set
+
+
+def get_refactored_xyz_fragility_set(fragility_set, custom_fragility_curve_parameters={},
+                                     limit_state="LS_0", sample_size:int=200):
+    demand_type_names = []
+    for parameter in fragility_set.fragility_curve_parameters:
+        # for hazard
+        if parameter.get("name") in fragility_set.demand_types:
+            demand_type_names.append(parameter["name"])
+        elif parameter.get("fullName") in fragility_set.demand_types:
+            demand_type_names.append(parameter["fullName"])
+        # check the rest of the parameters see if default or custom value has passed in
+        else:
+            if parameter.get("expression") is None and parameter.get("name") not in \
+                    custom_fragility_curve_parameters:
+                raise ValueError("The required parameter: " + parameter.get("name")
+                                 + " does not have a default or  custom value. Please check "
+                                   "your fragility curve setting. Alternatively, you can include it in the "
+                                   "custom_fragility_curve_parameters variable and passed it in this method. ")
+
+    xyz_set = {}
+    start, end = get_start_end(fragility_set.hazard_type, demand_type_names[0])
+
+    # check if desired limit state exist, we can only plot one limit state per time for 3d plot
+    matched = False
+    for curve in fragility_set.fragility_curves:
+        if limit_state == curve.return_type["description"]:
+            matched = True
+            x, y, z = PlotUtil.get_refactored_x_y_z(curve,
+                                                    demand_type_names[:2],
+                                                    fragility_set.fragility_curve_parameters,
+                                                    custom_fragility_curve_parameters, start=start, end=end,
+                                                    sample_size=sample_size)
+            key = curve.return_type['description']
+            xyz_set[key] = {'x': _ndarray_to_list(x), 'y': _ndarray_to_list(y), 'z': _ndarray_to_list(z)}
+
+    if not matched:
+        raise ValueError("Limit State " + limit_state + " does not exist!")
+
+    return xyz_set
+
 
 def get_start_end(hazard, demand_type):
     key = hazard.lower() + "-" + demand_type.lower()
@@ -112,4 +143,11 @@ def get_start_end(hazard, demand_type):
     return (range['start'], range['end'])
 
 
+def _ndarray_to_list(numpy_ndarray):
+    if isinstance(numpy_ndarray, np.ndarray):
+        result = numpy_ndarray.tolist()
+    else:
+        result = numpy_ndarray
+
+    return result
 
