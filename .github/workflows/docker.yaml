@@ -1,4 +1,4 @@
-name: CI
+name: DOCKER
 
 on:
   push:
@@ -64,16 +64,8 @@ jobs:
       # build docker image
       - name: Build image
         uses: elgohr/Publish-Docker-Github-Action@3.04
-        env:
-          BRANCH: ${{ env.GITHUB_BRANCH }}
-          VERSION: ${{ env.VERSION }}
-          BUILDNUMBER: ${{ github.run_number }}
-          GITSHA1: ${{ github.sha }}
         with:
-          registry: hub.ncsa.illinois.edu
           name: incore/plotting
-          tags: "${{ env.TAGS }}"
-          buildargs: BRANCH,VERSION,BUILDNUMBER,GITSHA1
           no_push: true
 
       # publish docker to NCSA
