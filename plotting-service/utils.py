@@ -122,11 +122,10 @@ def get_refactored_xyz_fragility_set(fragility_set, custom_fragility_curve_param
                                                 fragility_set.fragility_curve_parameters,
                                                 custom_fragility_curve_parameters, start=start, end=end,
                                                 sample_size=sample_interval)
-        x = np.vstack([X.ravel()])
-        y = np.vstack([Y.ravel()])
-        z = np.vstack([Z.ravel()])
+        result = np.vstack([X.ravel() ,Y.ravel(), Z.ravel()])
         key = curve.return_type['description']
-        xyz_set[key] = {'x': _ndarray_to_list(x), 'y': _ndarray_to_list(y), 'z': _ndarray_to_list(z)}
+        xyz_set[key] = {'x': _ndarray_to_list(result[0]), 'y': _ndarray_to_list(result[1]), 'z': _ndarray_to_list(
+            result[2])}
 
     return xyz_set
 
