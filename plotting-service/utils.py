@@ -96,8 +96,7 @@ def get_refactored_xy_fragility_set(fragility_set, custom_fragility_curve_parame
     return xy_set
 
 
-def get_refactored_xyz_fragility_set(fragility_set, custom_fragility_curve_parameters={},
-                                     limit_state="LS_0", sample_size:int=200):
+def get_refactored_xyz_fragility_set(fragility_set, custom_fragility_curve_parameters={}, sample_interval:int=0.5):
     demand_type_names = []
     for parameter in fragility_set.fragility_curve_parameters:
         # for hazard
@@ -117,24 +116,17 @@ def get_refactored_xyz_fragility_set(fragility_set, custom_fragility_curve_param
     xyz_set = {}
     start, end = get_start_end(fragility_set.hazard_type, demand_type_names[0])
 
-    # check if desired limit state exist, we can only plot one limit state per time for 3d plot
-    matched = False
     for curve in fragility_set.fragility_curves:
-        if limit_state == curve.return_type["description"]:
-            matched = True
-            X, Y, Z = PlotUtil.get_refactored_x_y_z(curve,
-                                                    demand_type_names[:2],
-                                                    fragility_set.fragility_curve_parameters,
-                                                    custom_fragility_curve_parameters, start=start, end=end,
-                                                    sample_size=sample_size)
-            x = np.vstack([X.ravel()])
-            y = np.vstack([Y.ravel()])
-            z = np.vstack([Z.ravel()])
-            key = curve.return_type['description']
-            xyz_set[key] = {'x': _ndarray_to_list(x), 'y': _ndarray_to_list(y), 'z': _ndarray_to_list(z)}
-
-    if not matched:
-        raise ValueError("Limit State " + limit_state + " does not exist!")
+        X, Y, Z = PlotUtil.get_refactored_x_y_z(curve,
+                                                demand_type_names[:2],
+                                                fragility_set.fragility_curve_parameters,
+                                                custom_fragility_curve_parameters, start=start, end=end,
+                                                sample_size=sample_interval)
+        x = np.vstack([X.ravel()])
+        y = np.vstack([Y.ravel()])
+        z = np.vstack([Z.ravel()])
+        key = curve.return_type['description']
+        xyz_set[key] = {'x': _ndarray_to_list(x), 'y': _ndarray_to_list(y), 'z': _ndarray_to_list(z)}
 
     return xyz_set
 
@@ -153,4 +145,3 @@ def _ndarray_to_list(numpy_ndarray):
         result = numpy_ndarray
 
     return result
-

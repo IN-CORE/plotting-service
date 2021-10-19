@@ -37,6 +37,17 @@ paths:
           type: integer
           format: int32
           default: 50
+      - name: sample_interval
+        in: query
+        description: interval of samples for 3d plotting
+        required: false
+        style: form
+        explode: true
+        schema:
+          maximum: 10
+          minimum: 0.1
+          type: float
+          default: 0.5
       - name: refresh
         in: query
         description: regenerate the samples or not
