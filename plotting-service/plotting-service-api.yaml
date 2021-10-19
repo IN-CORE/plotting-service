@@ -46,7 +46,7 @@ paths:
         schema:
           maximum: 10
           minimum: 0.1
-          type: float
+          type: number
           default: 0.5
       - name: refresh
         in: query
