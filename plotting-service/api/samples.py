@@ -1,4 +1,3 @@
-import logging
 import utils
 
 import cachedb
@@ -7,7 +6,6 @@ from pyincore.models.fragilitycurveset import FragilityCurveSet
 
 import json
 import traceback
-import sys
 
 
 def format_xy_set(xy_set):
