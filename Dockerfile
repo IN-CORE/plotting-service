@@ -3,6 +3,7 @@ FROM continuumio/miniconda3
 WORKDIR /src
 
 COPY plotting-service /src/plotting-service
+COPY plotting-service/data/cache.sqlite3 /src/plotting-service/cache.sqlite3
 
 WORKDIR /src/plotting-service
 
