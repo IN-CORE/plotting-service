@@ -5,10 +5,17 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
-## [0.2.0] - not released
-### TODO
-- add proper logging 
-- support 3D plots
+## [0.2.0] - 2021-10-27
+### Added
+- Add github action to build docker images [#2](https://github.com/IN-CORE/plotting-service/issues/2)
+- 3D fragility plot and format the output correct for UI to consume [#1](https://github.com/IN-CORE/plotting-service/issues/1)
+
+### Changed
+- Update github action for automatic docker build [#4](https://github.com/IN-CORE/plotting-service/issues/4)
+
+### Fixed
+- Fix the cache.sqlite copy error in deployment [#7](https://github.com/IN-CORE/plotting-service/issues/7)
+
 
 ## [0.1.0] - not released
 ### Added
