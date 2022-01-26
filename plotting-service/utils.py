@@ -5,9 +5,9 @@ import config
 from pyincore_viz.plotutil import PlotUtil
 
 
-def get_refactored_xy_fragility_set(fragility_set, custom_fragility_curve_parameters={}, sample_size: int = 200):
+def get_refactored_xy_fragility_set(fragility_set, custom_curve_parameters={}, sample_size: int = 200):
     demand_type_names = []
-    for parameter in fragility_set.fragility_curve_parameters:
+    for parameter in fragility_set.curve_parameters:
         # for hazard
         if parameter.get("name") in fragility_set.demand_types:
             demand_type_names.append(parameter["name"])
@@ -16,11 +16,11 @@ def get_refactored_xy_fragility_set(fragility_set, custom_fragility_curve_parame
         # check the rest of the parameters see if default or custom value has passed in
         else:
             if parameter.get("expression") is None and parameter.get("name") not in \
-                    custom_fragility_curve_parameters:
+                    custom_curve_parameters:
                 raise ValueError("The required parameter: " + parameter.get("name")
                                  + " does not have a default or custom value. Please check "
                                  "your fragility curve setting. Alternatively, you can include it in the "
-                                 "custom_fragility_curve_parameters variable and passed it in this method. ")
+                                 "custom_curve_parameters variable and passed it in this method. ")
 
     xy_set = {}
 
@@ -30,8 +30,8 @@ def get_refactored_xy_fragility_set(fragility_set, custom_fragility_curve_parame
     for curve in fragility_set.fragility_curves:
 
         x, y = PlotUtil.get_refactored_x_y(curve, demand_type_names[0],
-                                           fragility_set.fragility_curve_parameters,
-                                           custom_fragility_curve_parameters, start=start, end=end,
+                                           fragility_set.curve_parameters,
+                                           custom_curve_parameters, start=start, end=end,
                                            sample_size=sample_size)
         key = curve.return_type['description']
         xy_set[key] = {'x': _ndarray_to_list(x), 'y': _ndarray_to_list(y)}
@@ -39,9 +39,9 @@ def get_refactored_xy_fragility_set(fragility_set, custom_fragility_curve_parame
     return xy_set
 
 
-def get_refactored_xyz_fragility_set(fragility_set, custom_fragility_curve_parameters={}, sample_interval:int=0.5):
+def get_refactored_xyz_fragility_set(fragility_set, custom_curve_parameters={}, sample_interval:int=0.5):
     demand_type_names = []
-    for parameter in fragility_set.fragility_curve_parameters:
+    for parameter in fragility_set.curve_parameters:
         # for hazard
         if parameter.get("name") in fragility_set.demand_types:
             demand_type_names.append(parameter["name"])
@@ -50,11 +50,11 @@ def get_refactored_xyz_fragility_set(fragility_set, custom_fragility_curve_param
         # check the rest of the parameters see if default or custom value has passed in
         else:
             if parameter.get("expression") is None and parameter.get("name") not in \
-                    custom_fragility_curve_parameters:
+                    custom_curve_parameters:
                 raise ValueError("The required parameter: " + parameter.get("name")
                                  + " does not have a default or  custom value. Please check "
                                    "your fragility curve setting. Alternatively, you can include it in the "
-                                   "custom_fragility_curve_parameters variable and passed it in this method. ")
+                                   "custom_curve_parameters variable and passed it in this method. ")
 
     xyz_set = {}
     start, end = get_start_end(fragility_set.hazard_type, demand_type_names[0])
@@ -62,8 +62,8 @@ def get_refactored_xyz_fragility_set(fragility_set, custom_fragility_curve_param
     for curve in fragility_set.fragility_curves:
         X, Y, Z = PlotUtil.get_refactored_x_y_z(curve,
                                                 demand_type_names[:2],
-                                                fragility_set.fragility_curve_parameters,
-                                                custom_fragility_curve_parameters, start=start, end=end,
+                                                fragility_set.curve_parameters,
+                                                custom_curve_parameters, start=start, end=end,
                                                 sample_size=sample_interval)
         result = np.vstack([X.ravel() ,Y.ravel(), Z.ravel()])
         key = curve.return_type['description']
