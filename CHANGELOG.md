@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ## [Unreleased]
 ### Changed
 - Renamed master to main [#13](https://github.com/IN-CORE/plotting-service/issues/13)
+- Reduced output container size [#17](https://github.com/IN-CORE/plotting-service/issues/17)
 
 ## [1.6.0] - 2021-10-27
 ### Added
