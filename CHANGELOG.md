@@ -5,10 +5,11 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
-## [Unreleased]
+## [1.8.0] - 2021-02-07
 ### Changed
 - Renamed master to main [#13](https://github.com/IN-CORE/plotting-service/issues/13)
 - Reduced output container size [#17](https://github.com/IN-CORE/plotting-service/issues/17)
+- Backward compatible with the dfr3 naming change [#19](https://github.com/IN-CORE/plotting-service/pull/19)
 
 ## [1.6.0] - 2021-10-27
 ### Added
