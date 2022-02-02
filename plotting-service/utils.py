@@ -1,8 +1,7 @@
 import numpy as np
+from pyincore_viz.plotutil import PlotUtil
 
 import config
-
-from pyincore_viz.plotutil import PlotUtil
 
 
 def get_refactored_xy_fragility_set(fragility_set, custom_curve_parameters={}, sample_size: int = 200):
@@ -19,8 +18,8 @@ def get_refactored_xy_fragility_set(fragility_set, custom_curve_parameters={}, s
                     custom_curve_parameters:
                 raise ValueError("The required parameter: " + parameter.get("name")
                                  + " does not have a default or custom value. Please check "
-                                 "your fragility curve setting. Alternatively, you can include it in the "
-                                 "custom_curve_parameters variable and passed it in this method. ")
+                                   "your fragility curve setting. Alternatively, you can include it in the "
+                                   "custom_curve_parameters variable and passed it in this method. ")
 
     xy_set = {}
 
@@ -28,7 +27,6 @@ def get_refactored_xy_fragility_set(fragility_set, custom_curve_parameters={}, s
     # print(start, end, sample_size)
 
     for curve in fragility_set.fragility_curves:
-
         x, y = PlotUtil.get_refactored_x_y(curve, demand_type_names[0],
                                            fragility_set.curve_parameters,
                                            custom_curve_parameters, start=start, end=end,
@@ -39,7 +37,7 @@ def get_refactored_xy_fragility_set(fragility_set, custom_curve_parameters={}, s
     return xy_set
 
 
-def get_refactored_xyz_fragility_set(fragility_set, custom_curve_parameters={}, sample_interval:int=0.5):
+def get_refactored_xyz_fragility_set(fragility_set, custom_curve_parameters={}, sample_interval: int = 0.5):
     demand_type_names = []
     for parameter in fragility_set.curve_parameters:
         # for hazard
@@ -65,7 +63,7 @@ def get_refactored_xyz_fragility_set(fragility_set, custom_curve_parameters={}, 
                                                 fragility_set.curve_parameters,
                                                 custom_curve_parameters, start=start, end=end,
                                                 sample_size=sample_interval)
-        result = np.vstack([X.ravel() ,Y.ravel(), Z.ravel()])
+        result = np.vstack([X.ravel(), Y.ravel(), Z.ravel()])
         key = curve.return_type['description']
         xyz_set[key] = {'x': _ndarray_to_list(result[0]), 'y': _ndarray_to_list(result[1]), 'z': _ndarray_to_list(
             result[2])}
