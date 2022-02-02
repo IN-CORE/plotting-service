@@ -11,7 +11,9 @@ RUN mkdir /src/plotting-service/data \
  && mkdir /src/plotting-service/copydb
 
 #RUN conda install -n base --file env2.yml && conda clean -a
-RUN conda env create -f env.yml
+RUN conda env create -f env.yml && \
+  conda clean --all
+
 
 RUN echo "source activate plotting-service" > ~/.bashrc
 ENV PATH /opt/conda/envs/plotting-service/bin:$PATH
