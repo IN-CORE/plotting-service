@@ -10,7 +10,7 @@ export DEBUG=${DEBUG:-""}
 BRANCH=${BRANCH:-"$(git rev-parse --abbrev-ref HEAD)"}
 
 # Find out the version
-if [ "$BRANCH" = "master" ]; then
+if [ "$BRANCH" = "main" ]; then
     VERSION=""
 elif [ "${BRANCH}" = "develop" ]; then
     VERSION="-dev"
