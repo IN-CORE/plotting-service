@@ -16,9 +16,10 @@ def test_new_samples():
 
 def test_3d_samples_response():
     with open('3d_fragility.json', 'r') as f:
+    # with open('Galveston_wood_poles.json', 'r') as f:
         frag = json.load(f)
         params = {'sample_interval':0.5}
-        response = requests.post('http://localhost:5000/plotting/api/samples', json=frag, params=params)
+        response = requests.post('http://127.0.0.1:5000/plotting/api/samples', json=frag, params=params)
         print(response.content)
 
 
