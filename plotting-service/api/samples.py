@@ -52,26 +52,26 @@ def get_xy_set(fragility_set, sample_size, refresh):
     return xy_set
 
 
-def get_xyz_set(fragility_set, sample_interval, refresh):
+def get_xyz_set(fragility_set, sample_size, refresh):
     xyz_set = None
     if refresh is False:
-        xyz_set = cachedb.check_cache(fragility_set, sample_interval)
+        xyz_set = cachedb.check_cache(fragility_set, sample_size)
 
     # if there is a match, return the xyz_set
     if xyz_set is not None:
         return xyz_set
 
     # if there is no match, compute xyz_set
-    xyz_set = utils.get_refactored_xyz_fragility_set(fragility_set, sample_interval=sample_interval)
+    xyz_set = utils.get_refactored_xyz_fragility_set(fragility_set, sample_size=sample_size)
 
     # store the xyz_set to cache DB
-    cachedb.store_cache(fragility_set, sample_interval, xyz_set)
+    cachedb.store_cache(fragility_set, sample_size, xyz_set)
 
     return xyz_set
 
 
 # POST method for samples/{fraglity_set_id}
-def post(body, sample_size, sample_interval, refresh):
+def post(body, sample_size, refresh):
     try:
         # create fragility_set object from the body of request
         fragility_set_json = json.loads(body)
@@ -84,7 +84,7 @@ def post(body, sample_size, sample_interval, refresh):
 
         elif len(fragility_set.demand_types) > 1:
             # there is only sample interval that default to 0.5 right now
-            xyz_set = get_xyz_set(fragility_set, sample_interval=sample_interval, refresh=refresh)
+            xyz_set = get_xyz_set(fragility_set, sample_size=sample_size, refresh=refresh)
             return format_xyz_set(xyz_set), 200
 
 
