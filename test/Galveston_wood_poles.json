@@ -1,0 +1,155 @@
+{
+    "demandTypes" : [
+        "windVelocity", 
+        "surgeLevel", 
+        "waveHeight", 
+        "waterVelocity", 
+        "waveDirection"
+    ], 
+    "demandUnits" : [
+        "m/sec", 
+        "m", 
+        "m", 
+        "m/s", 
+        "deg"
+    ], 
+    "fragilityCurves" : [
+        {
+            "description" : "Galveston pole rupture fragility curves with parameters a0 to a7", 
+            "rules" : [
+                {
+                    "condition" : [
+                        "CLASS==3"
+                    ], 
+                    "expression" : "1/(1+math.exp(-(-7.1325+0.021686*windVelocity+0.048014*(HEIGHT-surgeLevel-waveHeight)+0.2974*waterVelocity*surgeLevel+0.026337*windVelocity*math.sin(waveDirection*3.14/180)+0.002212*windVelocity*A_conductor+0.028545*max(AGE,25)+0.52904*waveHeight)))"
+                }, 
+                {
+                    "condition" : [
+                        "CLASS==4"
+                    ], 
+                    "expression" : "1/(1+math.exp(-(-6.8655+0.022127*windVelocity+0.038238*(HEIGHT-surgeLevel-waveHeight)+0.30961*waterVelocity*surgeLevel+0.028689*windVelocity*math.sin(waveDirection*3.14/180)+0.002461*windVelocity*A_conductor+0.027454*max(AGE,25)+0.53341*waveHeight)))"
+                }, 
+                {
+                    "condition" : [
+                        "CLASS==5"
+                    ], 
+                    "expression" : "1/(1+math.exp(-(-6.8029+0.019763*windVelocity+0.041838*(HEIGHT-surgeLevel-waveHeight)+0.33543*waterVelocity*surgeLevel+0.032922*windVelocity*math.sin(waveDirection*3.14/180)+0.002892*windVelocity*A_conductor+0.026793*max(AGE,25)+0.57772*waveHeight)))"
+                }
+            ], 
+            "returnType" : {
+                "type" : "Probability Failure", 
+                "unit" : "", 
+                "description" : "LS_0"
+            }
+        }, 
+        {
+            "description" : "Galveston foundation failure fragility curves with parameters b0 to a6", 
+            "rules" : [
+                {
+                    "condition" : [
+                        "CLASS==3"
+                    ], 
+                    "expression" : "1/(1+math.exp(-(-5.0456+0.003961*windVelocity-0.16791*(HEIGHT-surgeLevel-waveHeight)+0.37292*waterVelocity*surgeLevel+0.032515*windVelocity*math.sin(waveDirection*3.14/180)+0.004207*windVelocity*A_conductor+0.5702*waveHeight)))"
+                }, 
+                {
+                    "condition" : [
+                        "CLASS==4"
+                    ], 
+                    "expression" : "1/(1+math.exp(-(-5.0324+0.002997*windVelocity-0.16735*(HEIGHT-surgeLevel-waveHeight)+0.36437*waterVelocity*surgeLevel+0.033068*windVelocity*math.sin(waveDirection*3.14/180)+0.004311*windVelocity*A_conductor+0.54988*waveHeight)))"
+                }, 
+                {
+                    "condition" : [
+                        "CLASS==5"
+                    ], 
+                    "expression" : "1/(1+math.exp(-(-5.0601+0.000618*windVelocity-0.16261*(HEIGHT-surgeLevel-waveHeight)+0.36183*waterVelocity*surgeLevel+0.035336*windVelocity*math.sin(waveDirection*3.14/180)+0.004477*windVelocity*A_conductor+0.51504*waveHeight)))"
+                }
+            ], 
+            "returnType" : {
+                "type" : "Probability Failure", 
+                "unit" : "", 
+                "description" : "LS_1"
+            }
+        }
+    ], 
+    "description" : "Galveston wood poles fragility for hurricane", 
+    "authors" : [
+        "Yousef Mohammadi Darestani", 
+        "Jamie E. Padgett", 
+        "Abdollah Shafieezadeh"
+    ], 
+    "paperReference" : {
+        "name" : "Darestani, Y., Padgett, J., & Shafieezadeh, A. (2022). Parametrized Wind–Surge–Wave Fragility Functions for Wood Utility Poles. Journal of Structural Engineering, 148(6), 04022057", 
+        "doi" : "10.1061/(ASCE)ST.1943-541X.0003319", 
+        "yearPublished" : "2022"
+    }, 
+    "resultUnit" : null,
+    "resultType" : "Limit State", 
+    "hazardType" : "hurricane", 
+    "inventoryType" : "pole", 
+    "creator" : "rmehrzad90", 
+    "curveParameters" : [
+        {
+            "name" : "windVelocity", 
+            "unit" : "m/sec", 
+            "description" : "wind velocity (m/s) coming from hazard data", 
+            "fullName" : "Vw", 
+            "expression" : "0.3"
+        }, 
+        {
+            "name" : "surgeLevel", 
+            "unit" : "m", 
+            "description" : "surge level (m) coming from hazard data", 
+            "fullName" : "Hs", 
+            "expression" : "2"
+        }, 
+        {
+            "name" : "waveHeight", 
+            "unit" : "m", 
+            "description" : "wave height (m) coming from hazard data", 
+            "fullName" : "Hw", 
+            "expression" : "3"
+        }, 
+        {
+            "name" : "waterVelocity", 
+            "unit" : "m/s", 
+            "description" : "water velocity (m/s) coming from hazard data", 
+            "fullName" : "Vs", 
+            "expression" : "0.5"
+        }, 
+        {
+            "name" : "waveDirection", 
+            "unit" : "deg", 
+            "description" : "wave direction (deg) coming from hazard data", 
+            "fullName" : "tetha", 
+            "expression" : "0.5"
+        }, 
+        {
+            "name" : "HEIGHT", 
+            "unit" : "m", 
+            "description" : "pole height (m) coming from pole inventory", 
+            "fullName" : null,
+            "expression" : "10"
+        }, 
+        {
+            "name" : "A_conductor", 
+            "unit" : "m2", 
+            "description" : "conductor surface area (m2) coming from pole inventory", 
+            "fullName" : null,
+            "expression" : "1"
+        }, 
+        {
+            "name" : "AGE", 
+            "unit" : "yr", 
+            "description" : "age (yr) coming from pole inventory", 
+            "fullName" : null,
+            "expression" : "20"
+        },
+        {
+            "name" : "CLASS", 
+            "unit" : "n/a", 
+            "description" : "class definition", 
+            "fullName" : "CLASS", 
+            "expression" : "3"
+        } 
+    ]
+}
