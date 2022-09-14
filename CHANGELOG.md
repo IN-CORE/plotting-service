@@ -5,7 +5,11 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
-## [1.8.0] - 2021-02-07
+## [1.11.0] - 2022-09-14
+### Fixed
+- Change the way we compute sample intervals to avoid large amount of data transfer that breaks the gateway [22](https://github.com/IN-CORE/plotting-service/issues/22)
+
+## [1.8.0] - 2022-02-07
 ### Changed
 - Renamed master to main [#13](https://github.com/IN-CORE/plotting-service/issues/13)
 - Reduced output container size [#17](https://github.com/IN-CORE/plotting-service/issues/17)
