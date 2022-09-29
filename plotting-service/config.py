@@ -4,9 +4,9 @@ project = 'plotting-service'
 author = 'Chen Wang'
 
 # The short X.Y version
-version = '1.8'
+version = '1.11'
 # The full version, including alpha/beta/rc tags
-release = '1.8.0'
+release = '1.11.0'
 
 DATABASE = 'data/cache.sqlite3'
 RANGE = {
