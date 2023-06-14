@@ -1,0 +1,94 @@
+{
+  "id": "6489bb6cc846a8173e03f510",
+  "description": "One story RC building in Seaside",
+  "authors": [],
+  "paperReference": null,
+  "resultUnit": null,
+  "resultType": "Limit State",
+  "hazardType": "earthquake+tsunami",
+  "inventoryType": "building",
+  "creator": "cwang138",
+  "curveParameters": [
+    {
+      "name": "zero_point_four_sa",
+      "unit": "g",
+      "description": "zero_point_four_sa value from hazard service",
+      "fullName": "0.4 sec SA",
+      "expression": null
+    },
+    {
+      "name": "Mmax",
+      "unit": "m^3/s^2",
+      "description": "momentumFlux value from hazard service",
+      "fullName": "Mmax",
+      "expression": None
+    }
+  ],
+  "spaces": [
+    "cwang138"
+  ],
+  "demandTypes": [
+    "0.4 sec SA",
+    "mMax"
+  ],
+  "demandUnits": [
+    "g",
+    "ft^3/s^2"
+  ],
+  "fragilityCurves": [
+    {
+      "description": "Moderate",
+      "rules": [
+        {
+          "condition": [
+            "zero_point_four_sa  >= 0",
+            "Mmax >= 0"
+          ],
+          "expression": "1.01 * (zero_point_four_sa /1.314 + Mmax/236 + 2.337e-14*(zero_point_four_sa /1.314)*(Mmax/236))**6.651 / ((zero_point_four_sa /1.314 + Mmax/236 + 2.337e-14*(zero_point_four_sa /1.314)*(Mmax/236))**6.651 + 1)"
+        }
+      ],
+      "returnType": {
+        "type": "Limit State",
+        "unit": "",
+        "description": "LS_0"
+      },
+      "curveParameters": None
+    },
+    {
+      "description": "Extensive",
+      "rules": [
+        {
+          "condition": [
+            "zero_point_four_sa  >= 0",
+            "Mmax >= 0"
+          ],
+          "expression": "1.01 * (zero_point_four_sa /2.038 + Mmax/290.3 + 4.35e-14*(zero_point_four_sa /2.038)*(Mmax/290.3))**5.016 / ((zero_point_four_sa /2.038 + Mmax/290.3 + 4.35e-14*(zero_point_four_sa /2.038)*(Mmax/290.3))**5.016 + 1)"
+        }
+      ],
+      "returnType": {
+        "type": "Limit State",
+        "unit": "",
+        "description": "LS_1"
+      },
+      "curveParameters": None
+    },
+    {
+      "description": "Complete",
+      "rules": [
+        {
+          "condition": [
+            "zero_point_four_sa  >= 0",
+            "Mmax >= 0"
+          ],
+          "expression": "1.01 * (zero_point_four_sa /2.829 + Mmax/411.8 + 2.445e-14*(zero_point_four_sa /2.829)*(Mmax/411.8))**4.07 / ((zero_point_four_sa /2.829 + Mmax/411.8 + 2.445e-14*(zero_point_four_sa /2.829)*(Mmax/411.8))**4.07 + 1)"
+        }
+      ],
+      "returnType": {
+        "type": "Limit State",
+        "unit": "",
+        "description": "LS_2"
+      },
+      "curveParameters": null
+    }
+  ]
+}
