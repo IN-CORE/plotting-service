@@ -21,7 +21,7 @@
       "unit": "m^3/s^2",
       "description": "momentumFlux value from hazard service",
       "fullName": "Mmax",
-      "expression": None
+      "expression": null
     }
   ],
   "spaces": [
@@ -52,7 +52,7 @@
         "unit": "",
         "description": "LS_0"
       },
-      "curveParameters": None
+      "curveParameters": null
     },
     {
       "description": "Extensive",
@@ -70,7 +70,7 @@
         "unit": "",
         "description": "LS_1"
       },
-      "curveParameters": None
+      "curveParameters": null
     },
     {
       "description": "Complete",
