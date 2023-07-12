@@ -5,6 +5,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [Unreleased] - 2023-06-14
+### Fixed
+- Add ranges and test for earthquake + tsuanmi fragililty curves [#27](https://github.com/IN-CORE/plotting-service/issues/27)
+
 ## [1.11.0] - 2022-09-14
 ### Fixed
 - Change the way we compute sample intervals to avoid large amount of data transfer that breaks the gateway [22](https://github.com/IN-CORE/plotting-service/issues/22)
