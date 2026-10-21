@@ -16,3 +16,7 @@ python app.py OR flask run
 ## Testing the flask app
 cd test
 python test_sample.py
+
+## License
+
+This project is licensed under the [Mozilla Public License 2.0](https://www.mozilla.org/MPL/2.0/). See [LICENSE](LICENSE).
