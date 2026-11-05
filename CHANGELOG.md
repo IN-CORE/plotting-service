@@ -5,7 +5,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
-## [Unreleased] - 2023-06-14
+## [Unreleased]
+### Changed
+- Bump Python to 3.11+, pyincore to 1.23.0+ and pyincore-viz to 1.13.0+; pin connexion below 3 [#30](https://github.com/IN-CORE/plotting-service/issues/30)
+
 ### Fixed
 - Add ranges and test for earthquake + tsuanmi fragililty curves [#27](https://github.com/IN-CORE/plotting-service/issues/27)
 
