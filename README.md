@@ -1,7 +1,7 @@
 # Plotting Service 
 IN-CORE service to generate sample points for plotting fragiliy curves
 
-## Create a conda environment
+## Create a conda environment (Python 3.11+)
 cd plotting-service
 conda env create -f env.yml
 
@@ -15,7 +15,7 @@ python app.py OR flask run
 
 ## Testing the flask app
 cd test
-python test_sample.py
+python test_samples.py
 
 ## License
 
