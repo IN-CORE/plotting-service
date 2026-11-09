@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### Fixed
 - Pin connexion to <3 and cap gunicorn and flask-cors at their current major versions; connexion 3.x broke the develop image
 - Add ranges and test for earthquake + tsuanmi fragililty curves [#27](https://github.com/IN-CORE/plotting-service/issues/27)
+- Move the service to Python 3.11 and require brotli-python 1.2.1 or newer to fix CVE-2026-111497 (Broccoli2Shell) [#32](https://github.com/IN-CORE/plotting-service/issues/32)
 
 ## [1.11.0] - 2022-09-14
 ### Fixed
