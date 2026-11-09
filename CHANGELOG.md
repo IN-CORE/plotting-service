@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased] - 2023-06-14
 ### Fixed
-- Pin connexion to <3 and add upper bounds on other dependencies; connexion 3.x broke the develop image
+- Pin connexion to <3 and cap gunicorn and flask-cors at their current major versions; connexion 3.x broke the develop image
 - Add ranges and test for earthquake + tsuanmi fragililty curves [#27](https://github.com/IN-CORE/plotting-service/issues/27)
 
 ## [1.11.0] - 2022-09-14
